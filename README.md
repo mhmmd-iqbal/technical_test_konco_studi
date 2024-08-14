@@ -1,5 +1,5 @@
 
-## Konco Studio
+# Konco Studio
 
 ## Requirement
 - PHP 8.3
@@ -33,9 +33,81 @@ php artisan db:seed
 ```
 php artisan key:generate
 ```
+- create passport key
+```
+php artisan passport:client --password
+```
+- copy client on .env
+```
+PASSPORT_PASSWORD_CLIENT_ID=
+PASSPORT_PASSWORD_SECRET=
+```
 - run project
 ```
 php artisan serve
-php artisan queue:work
 php artisan horizon
+php artisan queue:work
 ```
+- to open horizon, run command
+```
+{localhost:8000}/horizon
+```
+
+
+## API Reference
+#### Register 
+```
+POST /api/register
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` | **Required**. |
+| `email` | `string` | **Required**. |
+| `password` | `string` | **Required**. |
+
+#### Login 
+```
+POST /api/login
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. |
+| `password` | `string` | **Required**. |
+
+
+#### Create Transaction
+```
+POST /api/transaction
+```
+- Header: Bearer {token}
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `amount` | `int` | **Required**. |
+
+#### Update status payment
+```
+PUT /api/transaction/{:transactionID}
+```
+- Header: Bearer {token}
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `status` | `string` | **Required**. value is 'completed' or 'failed'|
+
+
+#### Get List Transactions
+```
+GET /api/transaction
+```
+- Header: Bearer {token}
+
+#### Get Transaction Summary
+```
+GET /api/transaction/summary
+```
+- Header: Bearer {token}
+
+### DUMMY ACCOUNT
+all dummy account password is: "password"

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => ['auth:api', 'throttle:60,1']], function () {
     Route::resource('/transaction', PaymentController::class)->only(['store', 'update', 'index']);
