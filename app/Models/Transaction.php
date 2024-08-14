@@ -11,6 +11,9 @@ class Transaction extends Model
 
     protected $fillable = ['user_id', 'amount', 'status'];
 
+    
+    protected $hidden = ['deleted_at'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
