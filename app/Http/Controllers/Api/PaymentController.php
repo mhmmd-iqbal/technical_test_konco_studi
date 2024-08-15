@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\createTransactionRequest;
+use App\Http\Requests\updateTransactionRequest;
 use App\Jobs\UpdateTransactionStatus;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class PaymentController extends Controller
 {
-    public function store(Request $request)
+    public function store(createTransactionRequest $request)
     {
         $transaction = Transaction::create([
             'user_id' => auth()->user()->id,
@@ -22,7 +23,7 @@ class PaymentController extends Controller
     }
 
 
-    public function update(Request $request, Transaction $transaction)
+    public function update(updateTransactionRequest $request, Transaction $transaction)
     {
         UpdateTransactionStatus::dispatch($transaction, $request->status);
 

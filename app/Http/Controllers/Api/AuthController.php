@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $client = Client::where('password_client', env('PASSPORT_PASSWORD_CLIENT_ID'))->first();
+        $client = Client::first();
 
         $tokenRequest = $request->create('/oauth/token', 'POST', [
             'grant_type' => 'password',
@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {    
 
-            $client = Client::where('password_client', env('PASSPORT_PASSWORD_CLIENT_ID'))->first();
+            $client = Client::first();
     
             $tokenRequest = $request->create('/oauth/token', 'POST', [
                 'grant_type' => 'password',

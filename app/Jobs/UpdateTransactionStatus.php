@@ -27,6 +27,18 @@ class UpdateTransactionStatus implements ShouldQueue
         $this->status = $status;
     }
 
+    // Getter for transaction
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    // Getter for status
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
     /**
      * Execute the job.
      *
@@ -34,8 +46,6 @@ class UpdateTransactionStatus implements ShouldQueue
      */
     public function handle()
     {
-        $this->transaction->update([
-            'status' => $this->status,
-        ]);
+        $this->transaction->update(['status' => $this->status]);
     }
 }

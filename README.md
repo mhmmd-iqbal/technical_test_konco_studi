@@ -37,11 +37,6 @@ php artisan key:generate
 ```
 php artisan passport:client --password
 ```
-- copy client on .env
-```
-PASSPORT_PASSWORD_CLIENT_ID=
-PASSPORT_PASSWORD_SECRET=
-```
 - run project
 ```
 php artisan serve
@@ -111,3 +106,8 @@ GET /api/transaction/summary
 
 ### DUMMY ACCOUNT
 all dummy account password is: "password"
+
+### TO RUN TEST
+```
+php artisan test
+```
